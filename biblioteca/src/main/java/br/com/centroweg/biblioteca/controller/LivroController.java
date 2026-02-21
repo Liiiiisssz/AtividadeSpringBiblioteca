@@ -1,5 +1,7 @@
 package br.com.centroweg.biblioteca.controller;
 
+import br.com.centroweg.biblioteca.dto.livro.LivroRequisicaoDTO;
+import br.com.centroweg.biblioteca.dto.livro.LivroRespostaDTO;
 import br.com.centroweg.biblioteca.model.Livro;
 import br.com.centroweg.biblioteca.service.LivroService;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +18,16 @@ public class LivroController {
     }
 
     @PostMapping
-    public Livro save(@RequestBody Livro livro){
+    public LivroRespostaDTO save(@RequestBody LivroRequisicaoDTO requisicaoDTO){
         try{
-            return service.save(livro);
+            return service.save(requisicaoDTO);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }
     }
 
     @GetMapping
-    public List<Livro> getAll(){
+    public List<LivroRespostaDTO> getAll(){
         try{
             return service.getAll();
         } catch (SQLException e){
@@ -34,7 +36,7 @@ public class LivroController {
     }
 
     @GetMapping("/{id}")
-    public Livro getById(@PathVariable Integer id){
+    public LivroRespostaDTO getById(@PathVariable Integer id){
         try{
             return service.getById(id);
         } catch (SQLException e){
@@ -43,9 +45,9 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public Livro update(@PathVariable Integer id, @RequestBody Livro livro){
+    public LivroRespostaDTO update(@PathVariable Integer id, @RequestBody LivroRequisicaoDTO requisicaoDTO){
         try {
-            return service.update(livro, id);
+            return service.update(requisicaoDTO, id);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }

@@ -3,6 +3,13 @@ package br.com.centroweg.biblioteca.model;
 public class Livro {
     private Integer id;
     private String titulo;
+
+    public Livro(String titulo, String autor, int anoPublicacao) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+    }
+
     private String autor;
     private int anoPublicacao;
     public Livro(){}

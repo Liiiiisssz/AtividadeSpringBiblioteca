@@ -1,5 +1,7 @@
 package br.com.centroweg.biblioteca.controller;
 
+import br.com.centroweg.biblioteca.dto.usuario.UsuarioRequisicaoDTO;
+import br.com.centroweg.biblioteca.dto.usuario.UsuarioRespostaDTO;
 import br.com.centroweg.biblioteca.model.Usuario;
 import br.com.centroweg.biblioteca.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +18,16 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario save(@RequestBody Usuario usuario){
+    public UsuarioRespostaDTO save(@RequestBody UsuarioRequisicaoDTO requisicaoDto){
         try{
-            return service.save(usuario);
+            return service.save(requisicaoDto);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }
     }
 
     @GetMapping
-    public List<Usuario> getAll(){
+    public List<UsuarioRespostaDTO> getAll(){
         try{
             return service.getAll();
         } catch (SQLException e){
@@ -34,7 +36,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Usuario getById(@PathVariable Integer id){
+    public UsuarioRespostaDTO getById(@PathVariable Integer id){
         try{
             return service.getByid(id);
         } catch (SQLException e){
@@ -43,7 +45,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public Usuario update(@PathVariable Integer id, @RequestBody Usuario usuario){
+    public UsuarioRespostaDTO update(@PathVariable Integer id, @RequestBody UsuarioRequisicaoDTO usuario){
         try{
             return service.update(usuario, id);
         } catch (SQLException e){

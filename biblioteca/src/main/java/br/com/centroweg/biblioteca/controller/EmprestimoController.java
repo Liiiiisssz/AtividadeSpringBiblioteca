@@ -1,5 +1,7 @@
 package br.com.centroweg.biblioteca.controller;
 
+import br.com.centroweg.biblioteca.dto.emprestimo.EmprestimoRequisicaoDTO;
+import br.com.centroweg.biblioteca.dto.emprestimo.EmprestimoRespostaDTO;
 import br.com.centroweg.biblioteca.model.Emprestimo;
 import br.com.centroweg.biblioteca.service.EmprestimoService;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +18,16 @@ public class EmprestimoController {
     }
 
     @PostMapping
-    public Emprestimo save(@RequestBody Emprestimo emprestimo){
+    public EmprestimoRespostaDTO save(@RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try{
-            return service.save(emprestimo);
+            return service.save(requisicaoDTO);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }
     }
 
     @GetMapping
-    public List<Emprestimo> getAll(){
+    public List<EmprestimoRespostaDTO> getAll(){
         try{
             return service.getAll();
         } catch (SQLException e){
@@ -34,7 +36,7 @@ public class EmprestimoController {
     }
 
     @GetMapping("/{id}")
-    public Emprestimo getById(@PathVariable Integer id){
+    public EmprestimoRespostaDTO getById(@PathVariable Integer id){
         try{
             return service.getById(id);
         } catch (SQLException e){
@@ -43,9 +45,9 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}")
-    public Emprestimo update(@PathVariable Integer id, @RequestBody Emprestimo emprestimo){
+    public EmprestimoRespostaDTO update(@PathVariable Integer id, @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try {
-            return service.update(emprestimo, id);
+            return service.update(requisicaoDTO, id);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         }
@@ -61,9 +63,9 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}/devolucao")
-    public Emprestimo devolucao(@PathVariable Integer id, @RequestBody Emprestimo emprestimo){
+    public EmprestimoRespostaDTO devolucao(@PathVariable Integer id, @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try {
-            return service.devolucao(emprestimo, id);
+            return service.devolucao(requisicaoDTO, id);
         } catch (SQLException e){
             throw new RuntimeException(e.getMessage());
         } catch (IllegalAccessException e){
@@ -72,7 +74,7 @@ public class EmprestimoController {
     }
 
     @GetMapping("/usuario/{id}")
-    public List<Emprestimo> emprestimosUsuario(@PathVariable Integer id){
+    public List<EmprestimoRespostaDTO> emprestimosUsuario(@PathVariable Integer id){
         try{
             return service.emprestimosUsuario(id);
         } catch (SQLException e){

@@ -9,6 +9,13 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
 
+    public Emprestimo(Integer livroId, Integer usuarioId, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+        this.livroId = livroId;
+        this.usuarioId = usuarioId;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+    }
+
     public Emprestimo(Integer id, Integer livroId, Integer usuarioId, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
         this.id = id;
         this.livroId = livroId;

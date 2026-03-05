@@ -4,6 +4,7 @@ import br.com.centroweg.biblioteca.dto.emprestimo.EmprestimoRequisicaoDTO;
 import br.com.centroweg.biblioteca.dto.emprestimo.EmprestimoRespostaDTO;
 import br.com.centroweg.biblioteca.model.Emprestimo;
 import br.com.centroweg.biblioteca.service.EmprestimoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class EmprestimoController {
     }
 
     @PostMapping
-    public EmprestimoRespostaDTO save(@RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
+    public EmprestimoRespostaDTO save(@Valid @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try{
             return service.save(requisicaoDTO);
         } catch (SQLException e){
@@ -45,7 +46,7 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}")
-    public EmprestimoRespostaDTO update(@PathVariable Integer id, @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
+    public EmprestimoRespostaDTO update(@PathVariable Integer id, @Valid @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try {
             return service.update(requisicaoDTO, id);
         } catch (SQLException e){
@@ -63,7 +64,7 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}/devolucao")
-    public EmprestimoRespostaDTO devolucao(@PathVariable Integer id, @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
+    public EmprestimoRespostaDTO devolucao(@PathVariable Integer id, @Valid @RequestBody EmprestimoRequisicaoDTO requisicaoDTO){
         try {
             return service.devolucao(requisicaoDTO, id);
         } catch (SQLException e){

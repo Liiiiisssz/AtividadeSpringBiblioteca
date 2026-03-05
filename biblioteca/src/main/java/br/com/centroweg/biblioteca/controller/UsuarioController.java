@@ -4,6 +4,7 @@ import br.com.centroweg.biblioteca.dto.usuario.UsuarioRequisicaoDTO;
 import br.com.centroweg.biblioteca.dto.usuario.UsuarioRespostaDTO;
 import br.com.centroweg.biblioteca.model.Usuario;
 import br.com.centroweg.biblioteca.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public UsuarioRespostaDTO save(@RequestBody UsuarioRequisicaoDTO requisicaoDto){
+    public UsuarioRespostaDTO save(@Valid @RequestBody UsuarioRequisicaoDTO requisicaoDto){
         try{
             return service.save(requisicaoDto);
         } catch (SQLException e){
@@ -45,7 +46,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public UsuarioRespostaDTO update(@PathVariable Integer id, @RequestBody UsuarioRequisicaoDTO usuario){
+    public UsuarioRespostaDTO update(@PathVariable Integer id, @Valid @RequestBody UsuarioRequisicaoDTO usuario){
         try{
             return service.update(usuario, id);
         } catch (SQLException e){
